@@ -2,43 +2,39 @@
 
 use setasign\FpdiProtection\FpdiProtection;
 
-require_once('vendor/pass/fpdip/src/autoload.php');
-require_once('vendor/pass/fpdi/src/autoload.php');
-require_once('vendor/pass/fpdf/fpdf.php');
+require_once 'vendor/pass/fpdip/src/autoload.php';
+require_once 'vendor/pass/fpdi/src/autoload.php';
+require_once 'vendor/pass/fpdf/fpdf.php';
 
 /**
  * password for the pdf file
  */
-foreach ($data1 as $row):{
-                          //   echo $row['nama_dokumen'];}
-                          //   // endforeach;
-                            $idq=$row['password'];
+foreach ($data1 as $row): {
+        $nama_dok = $row['nama_dokumen'];
+        //   // endforeach;
+        $idq = $row['password'];
 
-                        }endforeach;
+    }endforeach;
 
-$password = $this->encryption->decrypt($row['password']);;
+$password = $this->encryption->decrypt($row['password']);
 // echo $idq;
 
 /**
  * name of the original file (unprotected)
  */
-$origFile1 = FCPATH.$destFile3;
+$origFile1 = FCPATH . $destFile3;
 
 /**
  * name of the destination file
  */
 // $destFile1 = "download-file".$username.".pdf";
-$destFile1 = "DMS-File-".$nama_dok;
+$destFile1 = "DMS-File-" . $nama_dok . ".pdf";
 
-if ($izin_dok=="Approve")
-{
+if ($izin_dok == "Approve") {
     pdfEncrypt_print($origFile1, $password, $destFile1);
-}
-else
-{
+} else {
     pdfEncrypt($origFile1, $password, $destFile1);
 }
-
 
 function pdfEncrypt($origFile1, $password, $destFile1)
 {
@@ -58,11 +54,10 @@ function pdfEncrypt($origFile1, $password, $destFile1)
     $pdf->SetProtection(array('annot-forms'));
     // $output=$destFile1.".pdf";
     $pdf->Output($destFile1, 'D');
-   
+
     // return $destFile1;
 
 }
-
 
 function pdfEncrypt_print($origFile1, $password, $destFile1)
 {
@@ -79,7 +74,7 @@ function pdfEncrypt_print($origFile1, $password, $destFile1)
     }
 
 // protect the new pdf file, and allow no printing, copy etc and leave only reading allowed
-    $pdf->SetProtection(array('print','copy'), $password, "");
+    $pdf->SetProtection(array('print', 'copy'), $password, "");
     // $output=$destFile1.".pdf";
     $pdf->Output($destFile1, 'D');
     // redirect('c_pengelolah_dokumen_dms/index');
@@ -88,5 +83,3 @@ function pdfEncrypt_print($origFile1, $password, $destFile1)
 
 }
 // redirect('c_pengelolah_dokumen_dms/index');
-
-?>
