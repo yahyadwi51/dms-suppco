@@ -61,7 +61,7 @@ $enter = "&nbsp";
 $id = $this->session->userdata('id');
 $username = $this->session->userdata('username');
 $tts = "Copyright @ PT. APN " . $thun . ". Seluruh hak cipta. ";
-$tts2 = "Ini adalah dokumen RAHASIA. Setiap penyalinan, redistribusi atau transmisi ulang dari setiap bagian dari dokumen ini tanpa persetujuan tertulis dari PT APN dilarang";
+$tts2 = "Ini adalah dokumen RAHASIA. Setiap penyalinan, redistribusi atau transmisi ulang dari setiap bagian dari dokumen ini tanpa persetujuan tertulis dari PTPN 1 dilarang";
 
 foreach ($data_dokumen as $row): {
     $file = FCPATH . "uploads/" . $row['upload_dokumen'];
